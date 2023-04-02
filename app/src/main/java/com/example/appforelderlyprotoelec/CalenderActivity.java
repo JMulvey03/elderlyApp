@@ -6,17 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.appforelderlyprotoelec.HomeActivity;
+import com.example.appforelderlyprotoelec.R;
 
 
 public class CalenderActivity extends AppCompatActivity {
 
+    String act;
+    String hourSet;
+    String minSet;
     ImageButton back;
+    Button schedule;
     Spinner actSpin;
     Spinner minSpin;
     Spinner hourSpin;
@@ -32,10 +39,19 @@ public class CalenderActivity extends AppCompatActivity {
         //Screen Switch Code
         back = findViewById(R.id.backButton);
         back.setOnClickListener(v -> {
-            Intent intentHome = new Intent(CalenderActivity.this, HomeActivityStepper.class);
+            Intent intentHome = new Intent(CalenderActivity.this, HomeActivity.class);
 
             startActivity(intentHome);
         });
+        schedule = findViewById(R.id.confirm_sched);
+        schedule.setOnClickListener(v -> {
+            if(getAct() != "Choose activity to schedule..") {
+                //add details to database.
+            }else{
+                Toast.makeText(this, "Please choose an activity.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
         for (int i = 0; i < 24; i++) {
@@ -54,6 +70,8 @@ public class CalenderActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), activities[position], Toast.LENGTH_SHORT).show();
+                String actChoose = activities[position];
+                setAct(actChoose);
             }
 
             @Override
@@ -66,6 +84,7 @@ public class CalenderActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(),hours[position], Toast.LENGTH_SHORT).show();
+                String hourChoose = hours[position];
             }
 
             @Override
@@ -78,6 +97,7 @@ public class CalenderActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(),minutes[position],Toast.LENGTH_SHORT).show();
+                String minChoose = minutes[position];
             }
 
             @Override
@@ -99,6 +119,26 @@ public class CalenderActivity extends AppCompatActivity {
         minSpin.setAdapter(minAdapter);
     }
 
+    public void setAct(String act){
+        this.act = act;
+    }
+    public String getAct(){
+        return act;
+    }
+
+    public void getHour(String hourSet){
+        this.hourSet = hourSet;
+    }
+    public String getHour(){
+        return hourSet;
+    }
+
+    public void setMin(String minSet){
+        this.minSet = minSet;
+    }
+    public String getMin(){
+        return minSet;
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

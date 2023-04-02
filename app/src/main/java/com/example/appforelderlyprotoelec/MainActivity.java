@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     String[] weather = {"cloudy", "rain", "sunny"};
     String curWeather, curLocation, curTemp;
     Button cloudyButton, sunnyButton, rainyButton;
-    ImageButton but1, but2, but3, but4, but5, but6, but7, but8, daybut1, daybut2, daybut3, daybut4, daybut5, daybut6, daybut7, daybut8;
+    ImageButton but1, but2, but3, but4, but5, but6, but7, but8, daybut1, daybut2, daybut3, daybut4, daybut5, daybut6, daybut7, daybut8, backButton;
     ImageView currentWeather;
     TextView location, temperature, hour1, hour2, hour3, hour4, hour5, hour6, hour7, hour8, day1, day2, day3, day4, day5;
     HorizontalScrollView hs;
@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         cloudyButton = findViewById(R.id.cloudyButton);
         sunnyButton = findViewById(R.id.sunnyButton);
         rainyButton = findViewById(R.id.rainyButton);
+        backButton = findViewById(R.id.backButton);
         but1 = findViewById(R.id.button);
         but2 = findViewById(R.id.button1);
         but3 = findViewById(R.id.button2);
@@ -163,28 +164,15 @@ public class MainActivity extends AppCompatActivity {
         //LocalDateTime lt = LocalDateTime.now();
 
         //replaceFragment(new cloudyFragment());
-        rainyButton.setOnClickListener(new View.OnClickListener() {
+        rainyButton.setOnClickListener(view -> replaceFragment(new RainyFragment()));
+        cloudyButton.setOnClickListener(view -> replaceFragment(new cloudyFragment()));
+        sunnyButton.setOnClickListener(view -> replaceFragment(new sunnyFragment()));
 
-            @Override
-            public void onClick(View view) {
-                replaceFragment(new RainyFragment());
-            }
+        backButton.setOnClickListener(v -> {
+            Intent intentHome = new Intent(MainActivity.this, HomeActivity.class);
+
+            startActivity(intentHome);
         });
-        cloudyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                replaceFragment(new cloudyFragment());
-            }
-
-        });
-        sunnyButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                replaceFragment(new sunnyFragment());
-            }
-        });
-
     }
 
     private void setClickListener5DayForecast(ImageButton[] imageButtonArrayDaysForecast) {

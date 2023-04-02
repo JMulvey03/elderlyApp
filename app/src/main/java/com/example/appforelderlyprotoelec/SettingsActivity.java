@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -21,6 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
     private EditText mHeightEditText;
     private Button mSaveButton;
     private Button mLogoutButton;
+    private ImageButton backButton;
     private String mUsername;
     private DatabaseHelper mDbHelper;
 
@@ -37,6 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
         mHeightEditText = findViewById(R.id.height_text);
         mSaveButton = findViewById(R.id.save_button);
         mLogoutButton = findViewById(R.id.logout_button);
+        backButton = findViewById(R.id.backButton);
 
         mDbHelper = new DatabaseHelper(this);
 
@@ -130,34 +133,37 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         /// Logout button click listener
-        mLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Display an alert dialog asking the user if they're sure they want to log out
-                AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
-                builder.setMessage("Are you sure you want to log out?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // Clear the SharedPreferences and go back to the WelcomeActivity
-                                SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.clear();
-                                editor.apply();
+        mLogoutButton.setOnClickListener(v -> {
+            // Display an alert dialog asking the user if they're sure they want to log out
+            AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+            builder.setMessage("Are you sure you want to log out?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // Clear the SharedPreferences and go back to the WelcomeActivity
+                            SharedPreferences preferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.clear();
+                            editor.apply();
 
-                                Intent intent = new Intent(SettingsActivity.this, WelcomeActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // User cancelled the dialog, so do nothing
-                            }
-                        });
-                // Create the AlertDialog object and show it
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
+                            Intent intent1 = new Intent(SettingsActivity.this, WelcomeActivity.class);
+                            intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent1);
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog, so do nothing
+                        }
+                    });
+            // Create the AlertDialog object and show it
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        });
+
+        backButton.setOnClickListener(v -> {
+            Intent intentHome = new Intent(SettingsActivity.this, HomeActivity.class);
+
+            startActivity(intentHome);
         });
 
     }

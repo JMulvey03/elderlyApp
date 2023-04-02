@@ -18,4 +18,5 @@
     <item name="settings_button" type="id"/>
     <item name="appname_text" type="id"/>
     <item name="username_text" type="id"/>
+    <item name="confirm_sched" type="id" />
 </resources>

@@ -28,7 +28,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "users.db";
     private static final String TABLE_NAME = "users";
 
@@ -54,6 +54,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SCHEDULE_COLUMN_DAY = "schedule_column_day";
     private static final String SCHEDULE_COLUMN_TIME = "schedule_column_time";
     private static final String SCHEDULE_COLUMN_ACTIVITY = "schedule_column_activity";
+    private static final String COLUMN_LEVEL = "column_level";
+
+    private static final String COLUMN_POINTS="column_points";
 
     private SQLiteDatabase db;
     private Context context;
@@ -79,8 +82,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_DISTANCE + " REAL, " +
                 COLUMN_STEPS + " INTEGER, " +
                 COLUMN_EXERCISE + " TEXT, " +
+                COLUMN_LEVEL+"INTEGER, "+
+                COLUMN_POINTS+"INTEGER, "+
                 COLUMN_EXERCISE_DURATION + " INTEGER)";
-                db.execSQL(createTableQuery);
+        db.execSQL(createTableQuery);
+        String createScheduleTableQuery = "CREATE TABLE " + SCHEDULE_TABLE_NAME + " (" +
+                SCHEDULE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                SCHEDULE_COLUMN_USER_ID + " INTEGER, " + // Add the user_id column
+                SCHEDULE_COLUMN_DAY + " TEXT, " +
+                SCHEDULE_COLUMN_TIME + " TEXT, " +
+                SCHEDULE_COLUMN_ACTIVITY + " TEXT, " +
+
+                "FOREIGN KEY(" + SCHEDULE_COLUMN_USER_ID + ") REFERENCES " + TABLE_NAME + "(" + COLUMN_ID + "))";
+
+        db.execSQL(createScheduleTableQuery);
+
+        System.out.println("HERE");
 
 
     }
@@ -88,6 +105,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + SCHEDULE_TABLE_NAME);
+
         onCreate(db);
     }
 
@@ -107,20 +126,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_STEPS, user.getSteps());
         values.put(COLUMN_EXERCISE, user.getExercise());
         values.put(COLUMN_EXERCISE_DURATION, user.getExerciseDuration());
-
         db.insert(TABLE_NAME, null, values);
-        String createScheduleTableQuery = "CREATE TABLE " + SCHEDULE_TABLE_NAME + " (" +
-                SCHEDULE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                SCHEDULE_COLUMN_USER_ID + " INTEGER, " + // Add the user_id column
-                SCHEDULE_COLUMN_DAY + " TEXT, " +
-                SCHEDULE_COLUMN_TIME + " TEXT, " +
-                SCHEDULE_COLUMN_ACTIVITY + " TEXT, " +
 
-                "FOREIGN KEY(" + SCHEDULE_COLUMN_USER_ID + ") REFERENCES " + TABLE_NAME + "(" + COLUMN_ID + "))";
-
-        db.execSQL(createScheduleTableQuery);
-
-        System.out.println("HERE");
         db.close();
     }
 
@@ -242,5 +249,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return activitiesList;
     }
+
 
 }

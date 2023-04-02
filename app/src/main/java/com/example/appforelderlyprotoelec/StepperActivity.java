@@ -38,7 +38,7 @@ public class StepperActivity extends AppCompatActivity implements SensorEventLis
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 
         back.setOnClickListener(v -> {
-            Intent intentHome = new Intent(StepperActivity.this, HomeActivityStepper.class);
+            Intent intentHome = new Intent(StepperActivity.this, HomeActivity.class);
 
             startActivity(intentHome);
         });

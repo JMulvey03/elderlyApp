@@ -5,7 +5,7 @@
     android:id="@+id/exercisepage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDE6FD">
+    android:background="@color/back_default">
 
     <RelativeLayout
         android:layout_width="409dp"

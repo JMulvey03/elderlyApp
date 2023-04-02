@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/back_default"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".FindDetailsActivity">
 
     <!-- TextView for the birthdate input -->
 
@@ -35,8 +37,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="Enter Your Birthdate Below:"
-                android:textColor="@color/text_color"
+                android:text="@string/enter_your_birthdate_below"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +54,8 @@
 
                 <DatePicker
                     android:id="@+id/birthdate_picked"
+                    android:calendarTextColor="@color/black"
+                    android:backgroundTint="#B1CCE3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -69,8 +73,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Select Your Gender Below:"
-                android:textColor="#000000"
+                android:text="@string/select_your_gender_below"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,8 +99,8 @@
                     android:layout_height="wrap_content"
                     android:checked="true"
                     android:padding="8dp"
-                    android:text="Male"
-                    android:textColor="#000000" />
+                    android:text="@string/male"
+                    android:textColor="@color/black" />
 
                 <!-- RadioButton for selecting female gender -->
                 <RadioButton
@@ -104,8 +108,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="Female"
-                    android:textColor="#000000" />
+                    android:text="@string/female"
+                    android:textColor="@color/black" />
 
             </RadioGroup>
 
@@ -113,14 +117,13 @@
 
             <TextView
                 android:id="@+id/enter_weight_text"
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/gender_radio_group"
                 android:layout_marginTop="16dp"
-                android:text="Enter Your Weight Below:"
+                android:text="@string/enter_your_weight_below"
                 android:textAlignment="center"
-
-                android:textColor="@color/text_color"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.503"
@@ -148,6 +151,8 @@
 
                 <EditText
                     android:id="@+id/weight_input"
+                    android:hint="@string/weight"
+                    android:textColorHint="@color/text_color"
                     android:layout_width="187dp"
                     android:layout_height="56dp"
                     android:layout_weight="1"
@@ -156,12 +161,13 @@
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textColor="@color/text_color"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:importantForAutofill="no" />
 
                 <Spinner
                     android:id="@+id/weight_unit_spinner"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:entries="@array/weight_units"
                     android:paddingEnd="8dp"
@@ -176,9 +182,9 @@
                 android:layout_width="404dp"
                 android:layout_height="59dp"
                 android:layout_marginTop="4dp"
-                android:text="Enter Your Height Below:"
+                android:text="@string/enter_your_height_below"
                 android:textAlignment="center"
-                android:textColor="@color/text_color"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -204,20 +210,23 @@
 
                 <EditText
                     android:id="@+id/height_input"
+                    android:hint="height"
+                    android:textColorHint="@color/text_color"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:inputType="numberDecimal"
                     android:paddingStart="8dp"
                     android:paddingEnd="8dp"
                     android:textColor="@color/text_color"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:importantForAutofill="no" />
 
                 <Spinner
                     android:id="@+id/height_unit_spinner"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:entries="@array/height_units"
                     android:paddingEnd="8dp"
@@ -229,10 +238,12 @@
 
             <Button
                 android:id="@+id/save_button"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Save"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:text="@string/save_button"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EBEFF3"
+    android:background="@color/back_default"
     tools:context=".CalenderActivity">
 
     <CalendarView
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/confirm_sched"
         android:layout_width="130dp"
         android:layout_height="60dp"
         android:text="@string/confirm"

@@ -3,8 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/enter"
+    android:background="@color/back_default"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".CreateAccountActivity">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -16,16 +18,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@color/back_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/create_username_text"
+                android:textColor="@color/black"
                 android:layout_width="212dp"
                 android:layout_height="42dp"
                 android:layout_marginTop="28dp"
-                android:text="Create Your Username :"
+                android:text="@string/create_your_username"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,10 +56,11 @@
 
             <TextView
                 android:id="@+id/enter_email_text"
+                android:textColor="@color/black"
                 android:layout_width="247dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="92dp"
-                android:text="Enter Your Email Below : "
+                android:layout_marginTop="50dp"
+                android:text="@string/enter_your_email_below"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +70,6 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_layout"
-
                 android:layout_width="246dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +80,7 @@
                     android:id="@+id/email_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your email here"
+                    android:hint="@string/email_create"
                     android:textStyle="italic" />
 
                 <Button
@@ -85,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:text="Verify Email"
+                    android:text="@string/verify_email_button"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintTop_toBottomOf="@+id/confirm_password_input"
@@ -97,10 +101,11 @@
 
             <TextView
                 android:id="@+id/enter_password_text"
+                android:textColor="@color/black"
                 android:layout_width="203dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="28dp"
-                android:text="Enter A Password :"
+                android:text="@string/enter_a_password"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -109,6 +114,9 @@
 
             <EditText
                 android:id="@+id/password_input"
+                android:hint="@string/type_here"
+                android:textColorHint="@color/text_color"
+                android:textColor="@color/black"
                 android:layout_width="244dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -121,10 +129,11 @@
 
             <TextView
                 android:id="@+id/confirm_password_text"
+                android:textColor="@color/black"
                 android:layout_width="203dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="28dp"
-                android:text="Confirm Password :"
+                android:text="@string/confirm_password"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -133,6 +142,9 @@
 
             <EditText
                 android:id="@+id/confirm_password_input"
+                android:textColor="@color/black"
+                android:textColorHint="@color/text_color"
+                android:hint="@string/type_here"
                 android:layout_width="244dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -147,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Save"
+                android:text="@string/save_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"

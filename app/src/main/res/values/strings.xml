@@ -1,7 +1,7 @@
 <resources>
 
 
-    <string name="app_name">TheExerciseEnablingAppForTheElderly_ThirdYearProject</string>
+    <string name="app_name">Silver Strength</string>
 
     <string name="weight_label">Weight:</string>
     <string-array name="weight_units">
@@ -56,4 +56,31 @@
     <string name="hour_choose">Schedule Time (Hour):</string>
     <string name="minute_choose">Schedule Time (Minute):</string>
     <string name="ideal_steps">/10,000</string>
+    <string name="settings">Settings</string>
+    <string name="weather_button">Weather</string>
+    <string name="calendar_button">Calendar</string>
+    <string name="step_counter_button">Step Counter</string>
+    <string name="app_logo">App_Logo</string>
+    <string name="username">Username</string>
+    <string name="weight">weight</string>
+    <string name="password">password</string>
+    <string name="username_settings">username</string>
+    <string name="email_settings">email</string>
+    <string name="height_settings">height</string>
+    <string name="_settings">Save</string>
+    <string name="logout">Logout</string>
+    <string name="email_create">Enter your email here</string>
+    <string name="create_your_username">Create Your Username :</string>
+    <string name="confirm_password">Confirm Password :</string>
+    <string name="enter_your_email_below">Enter Your Email Below :</string>
+    <string name="verify_email_button">Verify Email</string>
+    <string name="enter_a_password">Enter A Password :</string>
+    <string name="save_button">Save</string>
+    <string name="enter_your_height_below">Enter Your Height Below:</string>
+    <string name="enter_your_birthdate_below">Enter Your Birthdate Below:</string>
+    <string name="enter_your_weight_below">Enter Your Weight Below:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="select_your_gender_below">Select Your Gender Below:</string>
+    <string name="type_here">type here</string>
 </resources>

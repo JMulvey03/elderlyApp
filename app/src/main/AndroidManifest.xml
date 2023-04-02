@@ -15,14 +15,18 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/my_app_icon"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppForElderlyProtoElec"
         tools:targetApi="31">
+
         <activity
             android:name=".WelcomeActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,29 +34,63 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateAccountActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".FindDetailsActivity"/>
-        <activity android:name=".HomeActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".SettingsActivity"/>
-        <activity android:name=".Exercise_routine"/>
+        <activity android:name=".CreateAccountActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"></activity>
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"></activity>
+        <activity android:name=".FindDetailsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
+        <activity android:name=".HomeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
+        <activity android:name=".LoginActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar" />
+        <activity android:name=".SettingsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
+        <activity android:name=".Exercise_routine"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
         <activity android:name=".CalenderActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".StepperActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".HomeActivityStepper"
-            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
+        <activity android:name=".Routine_cardio"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
+        <activity android:name=".WalkRoute"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"
             android:configChanges="orientation"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".Routine_cardio"/>
-        <activity android:name=".WalkRoute"></activity>
-        <activity android:name=".Exercise_routine_circuit_training"/>
-        <activity android:name=".Exercise_routine_yoga_joint_pain"/>
-        <activity android:name=".Routine_upperbody"/>
+        <activity android:name=".Exercise_routine_circuit_training"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
+        <activity android:name=".Exercise_routine_yoga_joint_pain"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
+        <activity android:name=".Routine_upperbody"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
 
     </application>
 
