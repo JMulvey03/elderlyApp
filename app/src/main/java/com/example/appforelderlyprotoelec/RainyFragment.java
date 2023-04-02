@@ -17,6 +17,7 @@ public class RainyFragment extends Fragment implements View.OnClickListener {
 
     Button circuitButton,vinyasaButton, upperBodyButton, cardioButton, yogaButton;
     NestedScrollView sv;
+    private int points=3;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,8 +34,8 @@ public class RainyFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(getActivity(), Exercise_routine_circuit_training.class);
-
                 startActivity(intent);
+
             }
         });
         yogaButton.setOnClickListener(new View.OnClickListener() {
