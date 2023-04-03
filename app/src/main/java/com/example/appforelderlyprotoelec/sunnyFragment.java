@@ -32,17 +32,23 @@ public class sunnyFragment extends Fragment implements View.OnClickListener {
         sunnyActivity1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent= new Intent(getActivity(),WalkRoute.class );
+                startActivity(intent);
             }
         });
         sunnyActivity2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent= new Intent(getActivity(),WalkRoute.class );
+                startActivity(intent);
 
             }
         });
         sunnyActivity3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent= new Intent(getActivity(),WalkRoute.class );
+                startActivity(intent);
 
             }
         });

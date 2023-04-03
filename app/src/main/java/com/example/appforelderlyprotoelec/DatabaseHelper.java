@@ -85,15 +85,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_LEVEL+"INTEGER, "+
                 COLUMN_POINTS+"INTEGER, "+
                 COLUMN_EXERCISE_DURATION + " INTEGER)";
-                db.execSQL(createTableQuery);
-                String createScheduleTableQuery = "CREATE TABLE " + SCHEDULE_TABLE_NAME + " (" +
-                        SCHEDULE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        SCHEDULE_COLUMN_USER_ID + " INTEGER, " + // Add the user_id column
-                        SCHEDULE_COLUMN_DAY + " TEXT, " +
-                        SCHEDULE_COLUMN_TIME + " TEXT, " +
-                        SCHEDULE_COLUMN_ACTIVITY + " TEXT, " +
+        db.execSQL(createTableQuery);
+        String createScheduleTableQuery = "CREATE TABLE " + SCHEDULE_TABLE_NAME + " (" +
+                SCHEDULE_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                SCHEDULE_COLUMN_USER_ID + " INTEGER, " + // Add the user_id column
+                SCHEDULE_COLUMN_DAY + " TEXT, " +
+                SCHEDULE_COLUMN_TIME + " TEXT, " +
+                SCHEDULE_COLUMN_ACTIVITY + " TEXT, " +
 
-                        "FOREIGN KEY(" + SCHEDULE_COLUMN_USER_ID + ") REFERENCES " + TABLE_NAME + "(" + COLUMN_ID + "))";
+                "FOREIGN KEY(" + SCHEDULE_COLUMN_USER_ID + ") REFERENCES " + TABLE_NAME + "(" + COLUMN_ID + "))";
 
         db.execSQL(createScheduleTableQuery);
 
