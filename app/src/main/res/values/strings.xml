@@ -83,4 +83,5 @@
     <string name="female">Female</string>
     <string name="select_your_gender_below">Select Your Gender Below:</string>
     <string name="type_here">type here</string>
+    <string name="username_change">Username:</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,11 +22,11 @@
 
     <ImageView
         android:id="@+id/stepLogo"
-        android:contentDescription="@string/stepper_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:background="@drawable/circle"
+        android:contentDescription="@string/stepper_activity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,67 +49,63 @@
 
     <TextView
         android:id="@+id/calories"
-        android:backgroundTint="#EBEFF3"
-        android:text="@string/caloriesNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="60dp"
+        android:background="#AEAEAE"
+        android:text="@string/caloriesNum"
+        android:textColor="#455A64"
         android:textSize="24sp"
-        android:textColor="@color/black"
-        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintEnd_toStartOf="@+id/divider"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/distance"
-        android:backgroundTint="#EBEFF3"
-        android:text="@string/distanceNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="60dp"
+        android:background="#AEAEAE"
+        android:text="@string/distanceNum"
+        android:textColor="#455A64"
         android:textSize="24sp"
-        android:textColor="@color/black"
-        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.835"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/divider" />
 
     <ImageView
         android:id="@+id/flame_logo"
-        android:contentDescription="@string/stepper_activity"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginBottom="100dp"
         android:background="@color/black"
+        android:contentDescription="@string/stepper_activity"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/calories"
         app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/calories"
         app:srcCompat="@drawable/fire_logo" />
 
     <ImageView
         android:id="@+id/distance_logo"
-        android:contentDescription="@string/stepper_activity"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginBottom="100dp"
         android:background="@color/white"
+        android:contentDescription="@string/stepper_activity"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/distance"
         app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/distance"
         app:srcCompat="@drawable/distance_logo" />
 
     <TextView
         android:id="@+id/personal"
-        android:backgroundTint="#EBEFF3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:background="@color/white"
+        android:backgroundTint="#EBEFF3"
         android:text="@string/personalBest"
         android:textColor="@color/black"
         android:textSize="25dp"
@@ -121,11 +116,11 @@
 
     <TextView
         android:id="@+id/stepsLeft"
-        android:backgroundTint="#EBEFF3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:background="@color/white"
+        android:backgroundTint="#EBEFF3"
         android:text="@string/stepsLeft"
         android:textColor="@color/black"
         android:textSize="25dp"
@@ -133,4 +128,13 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/personal" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="1dp"
+        android:layout_height="200dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

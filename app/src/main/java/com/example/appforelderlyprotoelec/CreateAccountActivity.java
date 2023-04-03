@@ -1,21 +1,33 @@
 package com.example.appforelderlyprotoelec;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -41,22 +53,21 @@ public class CreateAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account_screen);
-
         emailEditText = findViewById(R.id.email_input);
         usernameEditText = findViewById(R.id.username_input);
         passwordEditText = findViewById(R.id.password_input);
         confirmPasswordEditText = findViewById(R.id.confirm_password_input);
         buttonSave = findViewById(R.id.saveButton_create);
         buttonVerifyEmail = findViewById(R.id.verify_email_button);
-
+        isEmailVerified=true;
         dbHelper = new DatabaseHelper(this);
 
-        buttonSave.setEnabled(true);//chamge to false
+        buttonSave.setEnabled(true);
+        buttonSave.setBackgroundColor(getColor(R.color.datepicker_text_color));
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isEmailVerified=true;//change
                 if (isEmailVerified) {
                     // Get the email, username, password and confirm password from the EditText fields
                     email = emailEditText.getText().toString();
@@ -102,7 +113,7 @@ public class CreateAccountActivity extends AppCompatActivity {
             }
         });
 
-
+/**
         buttonVerifyEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,13 +127,16 @@ public class CreateAccountActivity extends AppCompatActivity {
                 }
 
                 // Send email verification
-                sendEmailVerification(email);
+                //sendEmailVerification(email);
+                buttonSave.setEnabled(true);
+                buttonSave.setBackgroundColor(getColor(R.color.light_green));
+
             }
-        });
+        });**/
 
     }
 
-    private void sendEmailVerification(String email) {
+    private void sendEmailVerification(String emailToVerify) {
         // Generate a random verification code
         String verificationCode = generateVerificationCode();
 
@@ -131,18 +145,40 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         // Create the email subject and message
         String subject = "Verify your email address";
-        String message = "Please click the following link to verify your email address: <a href='http://www.example.com/verify_email?code="
-                + verificationCode + "'>Verify Email</a>";
+        String message = "Please click the following link to verify your email address: http://www.example.com/verify_email?code=" + verificationCode;
 
-        // Create an intent to send the email
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", email, null));
+        // Use the Sendinblue API to send the email
+        OkHttpClient client = new OkHttpClient();
+        RequestBody requestBody = new FormBody.Builder()
+                .add("to", "[{\"email\":\"" + emailToVerify + "\"}]")
+                .add("subject", subject)
+                .add("htmlContent", message)
+                .add("sender", "{\"name\":\"Your App\",\"email\":\"verify@example.com\"}")
+                .build();
+        Request request = new Request.Builder()
+                .url("https://api.sendinblue.com/v3/smtp/email")
+                .post(requestBody)
+                .addHeader("Content-Type", "application/json")
+                .addHeader("api-key", "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")
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+                // Handle network error
+                Log.e(TAG, "Network error: " + e.getMessage());
+            }
 
-        // Add the email subject and message to the intent
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
-        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
-
-        // Start an activity to allow the user to choose an email client to send the email
-        startActivityForResult(Intent.createChooser(emailIntent, "Send email..."), EMAIL_VERIFICATION_REQUEST_CODE);
+            @Override
+            public void onResponse(okhttp3.Call call, Response response) throws IOException {
+                // Handle response from Sendinblue API
+                if (response.isSuccessful()) {
+                    // Email sent successfully
+                } else {
+                    // Email sending failed
+                }
+                response.close();
+            }
+        });
     }
 
     // This method will be called after the user has clicked the email verification link
@@ -151,16 +187,40 @@ public class CreateAccountActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == EMAIL_VERIFICATION_REQUEST_CODE && resultCode == RESULT_OK) {
-            // Check if the verification code in the URL matches the generated verification code
-            Uri uri = data.getData();
-            String verificationCode = uri.getQueryParameter("code");
+            // Use the Sendinblue API to verify the email
+            OkHttpClient client = new OkHttpClient();
+            RequestBody requestBody = new FormBody.Builder()
+                    .add("email", email)
+                    .build();
+            Request request = new Request.Builder()
+                    .url("https://api.sendinblue.com/v3/contacts/" + email + "/attributes")
+                    .put(requestBody)
+                    .addHeader("Content-Type", "application/json")
+                    .addHeader("api-key", "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")
+                    .build();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onResponse(okhttp3.Call call, Response response) throws IOException {
+                    // Handle response from Sendinblue API
+                    if (response.isSuccessful()) {
+                        // Email address has been verified successfully
+                        isEmailVerified = true;
+                    } else {
+                        // Email address is not valid
+                    }
+                    response.close();
+                }
 
-            if (verificationCode != null && verificationCode.equals(this.verificationCode)) {
-                // Email address has been verified successfully
-                isEmailVerified = true;
-            }
+                @Override
+                public void onFailure(okhttp3.Call call, IOException e) {
+                    // Handle network error
+                    Log.e(TAG, "Network error: " + e.getMessage());
+                }
+
+            });
         }
     }
+
     private String generateVerificationCode() {
         // Generate a random string of characters to use as the verification code
         String allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

@@ -8,7 +8,9 @@ public class User {
     private String birthdate;
     private String gender;
     private float weight;
+    private String weightUnit;
     private float height;
+    private String heightUnit;
     private float caloriesBurnt;
     private float distance;
     private int steps;
@@ -16,7 +18,7 @@ public class User {
     private int exerciseDuration;
 
     public User(int id, String name, String email, String password, String birthdate, String gender,
-                float weight, float height, float caloriesBurnt, float distance, int steps,
+                float weight, String weightUnit, float height, String heightUnit, float caloriesBurnt, float distance, int steps,
                 String exercise, int exerciseDuration) {
         this.id = id;
         this.name = name;
@@ -25,7 +27,9 @@ public class User {
         this.birthdate = birthdate;
         this.gender = gender;
         this.weight = weight;
+        this.weightUnit = weightUnit;
         this.height = height;
+        this.heightUnit = heightUnit;
         this.caloriesBurnt = caloriesBurnt;
         this.distance = distance;
         this.steps = steps;
@@ -99,6 +103,14 @@ public class User {
         this.height = height;
     }
 
+    public String getWeightUnits() {return weightUnit;}
+
+    public String getHeightUnits() {return heightUnit;}
+
+    public void setWeightUnits(String weightUnitString) {weightUnit = weightUnitString;}
+
+    public void setHeightUnits(String heightUnitString) {heightUnit = heightUnitString;}
+
     public float getCaloriesBurnt() {
         return caloriesBurnt;
     }
@@ -135,7 +147,6 @@ public class User {
         return exerciseDuration;
     }
 
-    public void setExerciseDuration(int exerciseDuration) {
-        this.exerciseDuration = exerciseDuration;
-    }
+    public void setExerciseDuration(int exerciseDuration) {this.exerciseDuration = exerciseDuration;}
+
 }

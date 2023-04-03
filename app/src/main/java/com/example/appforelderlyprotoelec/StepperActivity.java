@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
+
 public class StepperActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor stepSensor;
@@ -21,13 +23,14 @@ public class StepperActivity extends AppCompatActivity implements SensorEventLis
     TextView tv_stepsTaken;
     TextView calSpent;
     TextView distTravelled;
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.step_screen);
-        tv_stepsTaken = findViewById(R.id.currentsteps);
+        tv_stepsTaken = (TextView)findViewById(R.id.currentsteps);
         calSpent = findViewById(R.id.calories);
         distTravelled = findViewById(R.id.distance);
         back = findViewById(R.id.backButton);
@@ -47,7 +50,7 @@ public class StepperActivity extends AppCompatActivity implements SensorEventLis
     protected void onResume() {
         super.onResume();
 
-        sensorManager.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_FASTEST);
 
         if (stepSensor == null) {
             Toast.makeText(this, "No sensor detected on this device", Toast.LENGTH_SHORT).show();
@@ -77,29 +80,11 @@ public class StepperActivity extends AppCompatActivity implements SensorEventLis
             steps++;
             double calories = calcCalories(steps);
             double dist = calcDistance(steps);
-                Toast.makeText(this ,"Stepper is Running", Toast.LENGTH_SHORT).show();
                 tv_stepsTaken.setText(steps + " " + getString(R.string.ideal_steps));
-                calSpent.setText(calories + " " + getString(R.string.calories));
-                distTravelled.setText(dist + " " + getString(R.string.metres));
+                calSpent.setText(df.format(calories) + " " + getString(R.string.calories));
+                distTravelled.setText(df.format(dist) + " " + getString(R.string.metres));
         }
     }
-
-//    private void saveData() {
-//        Context context = getApplicationContext();
-//        SharedPreferences sharedPreferences = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putFloat("key1", previousTotalSteps);
-//        editor.apply();
-//    }
-
-
-//    private void loadData() {
-//        Context context = getApplicationContext();
-//        SharedPreferences sharedPreferences = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-//        float savedNumber = sharedPreferences.getFloat("key1", 0f);
-//        Log.d("StepperActivity", String.valueOf(savedNumber));
-//        previousTotalSteps = savedNumber;
-//    }
 
     public double calcCalories(long steps){
         double cal = steps * 0.063;
