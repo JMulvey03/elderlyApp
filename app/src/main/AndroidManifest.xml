@@ -93,6 +93,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.NoActionBar"/>
 
+
     </application>
 
 </manifest>
