@@ -149,6 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = null;
         User user = null;
 
+
         try {
             db = this.getReadableDatabase();
 
