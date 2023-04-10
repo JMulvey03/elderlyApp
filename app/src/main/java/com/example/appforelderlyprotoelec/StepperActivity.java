@@ -69,12 +69,6 @@ public class StepperActivity extends AppCompatActivity implements SensorEventLis
     @Override
     public void onSensorChanged(SensorEvent event) {
         Sensor sensor = event.sensor;
-        float[] values = event.values;
-        int value = -1;
-
-        if(values.length > 0){
-            value = (int) values[0];
-        }
 
         if (sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
             steps++;
